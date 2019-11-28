@@ -2,22 +2,25 @@ README: Documentation of 'Circular statistics: Goodness of Fit'
 
 This library contains the code used for my bachelor thesis 'Circular Statistics: Goodness of Fit'.
 
-In 'tests', four classical tests of uniformity for circular data are implemented. All test functions take as argument a list of angles in [0, 2pi[. These tests are
+In 'tests', four classical tests of uniformity for circular data are implemented. All test functions take as argument a list of angles in [0, 2pi[ and output the p-value of the hypothesis problem 
+HO: sample comes from uniform distribution
+H1: sample does not come from uniform distribution
+These tests are
 
 - rayleigh: Rayleigh test
 uses the distribution of the mean resultant vector
 
 
 - rayleigh2: Rayleigh test with specified mean
-same as rayleigh but for a specified mean mu = 0 by default. 
+same as rayleigh but for a specified mean mu = 0 by default 
 
 
 - watson: Watson test
-uses the supremum metric
+uses the mean square deviation of the data from uniformity
 
 
 - kuiper: Kuiper test
-uses the mean square deviation
+uses the sum of suprema of the differences between the empirical cdf and the cdf of the uniform
 
 
 The 'sampling' module provides code for generating data from some important distributions and also a selection of
