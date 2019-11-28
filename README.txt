@@ -2,7 +2,7 @@ README: Documentation of 'Circular statistics: Goodness of Fit'
 
 This library contains the code used for my bachelor thesis 'Circular Statistics: Goodness of Fit'.
 
-In 'tests', four classical tests of uniformity for circular data are implemented. These tests are
+In 'tests', four classical tests of uniformity for circular data are implemented. All test functions take as argument a list of angles in [0, 2pi[. These tests are
 
 - rayleigh: Rayleigh test
 uses the distribution of the mean resultant vector
