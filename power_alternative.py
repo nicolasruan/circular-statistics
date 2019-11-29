@@ -57,24 +57,30 @@ def samples():
 #                          double_vonmises(sample_size, 3), semicircle(sample_size, 0.6), semicircle(sample_size, 0.8)] 
 #                        )
 
-#           row.append([ double_vonmises(sample_size, 3),  
-#                         semicircle(sample_size, 0.6),
-#                         semicircle(sample_size, 0.8)])
-            row.append([
-                          np.random.vonmises(0, 1, sample_size) + np.array([np.pi for k in range(0, sample_size)]),
-                        np.random.vonmises(0, 1/2, sample_size) + np.array([np.pi for k in range(0, sample_size)]),
-                        np.random.vonmises(0, 1/4, sample_size) + np.array([np.pi for k in range(0, sample_size)]),
-                          wrapped_cauchy(sample_size, 0, 1/2),
-                        wrapped_cauchy(sample_size, 0, 1),
-                        wrapped_cauchy(sample_size, 0, 2),
-                          wrapped_normal(sample_size, 0, 1),
-                        wrapped_normal(sample_size, 0, 1.5),
-                        wrapped_normal(sample_size, 0, 2),
-                          cardioid(sample_size, 0, 1/4),
-                          cardioid(sample_size, 0, 1/8),
-                          cardioid(sample_size, 0, 1/16)
-                ])
-            
+           row.append([ vonmises_mix(sample_size, 0, 2, np.pi, 2, .5),
+                        vonmises_mix(sample_size, 0, 2, np.pi/2, 2, .5),
+                        vonmises_mix(sample_size, 0, 2, np.pi/4, 2, .5),
+                        vonmises_mix(sample_size, 0, .5, np.pi, .5, .5),
+                        vonmises_mix(sample_size, 0, .5, np.pi, .25, .5),
+                        vonmises_mix(sample_size, 0, .5, np.pi, .1, .5),
+                         semicircle(sample_size, 0.6),
+                         semicircle(sample_size, 0.8),
+                         semicircle(sample_size, 0.95)])
+##            row.append([
+##                          np.random.vonmises(0, 1, sample_size),
+##                        np.random.vonmises(0, 1/2, sample_size),
+##                        np.random.vonmises(0, 1/4, sample_size),
+##                          wrapped_cauchy(sample_size, 0, 1/2),
+##                        wrapped_cauchy(sample_size, 0, 1),
+##                        wrapped_cauchy(sample_size, 0, 2),
+##                          wrapped_normal(sample_size, 0, 1),
+##                        wrapped_normal(sample_size, 0, 1.5),
+##                        wrapped_normal(sample_size, 0, 2),
+##                          cardioid(sample_size, 0, 1/4),
+##                          cardioid(sample_size, 0, 1/8),
+##                          cardioid(sample_size, 0, 1/16),
+##                ])
+##            
 
         data.append(row)
     return data
@@ -82,15 +88,16 @@ def samples():
 
 ## Test performance ##
 
-tests = [watson, kuiper]
-test_names = ["watson", "kuiper"]
+tests = [rayleigh, watson, kuiper]
+test_names = ["rayleigh", "watson", "kuiper"]
 
-distribution_names = ["vonmises", "wrapped cauchy", "wrapped normal", "cardioid"]
+distribution_names = ["vonmises mix ($\\mu_1=0, \\kappa_1=\\kappa_2=1$)",
+                      "vonmises mix ($\\mu_1=0, \\mu_2=\\pi, \\kappa_1=1/2$)",
+                      "semicircle"]
 
-labels = ["$\\kappa=1$", "$\\kappa=1/2$", "$\\kappa=1/4$",
-          "$\\gamma=1/2$", "$\\gamma=1$", "$\\gamma=2$",
-          "$\\sigma=1$", "$\\sigma=3/2$", "$\\sigma=2$",
-          "$\\rho=1/4$", "$\\rho=1/8$", "$\\rho=1/16$"]
+labels = ["$\\mu_2 = \\pi$", "$\\mu_2 = \\pi/2$", "$\\mu_2 = \\pi/4$",
+          "$\\kappa_2 = 1/2$", "$\\kappa_2 = 1/4$", "$\\kappa_2 = 1/10$" ,
+            "p = 0.6", "p = 0.8", "p = 0.95"]
 
 #distribution_names = ["uniform", "vonmises (0, 1/2)", "vonmises (0, 1)", "vonmises (0, 2)",
 #                      "cauchy (0, 1/2)", "cauchy (0, 1)", "cauchy (0, 2)",
@@ -123,19 +130,19 @@ def performance(data, alpha):
 
 
 def plot_performance(table):
-
-    fig, axs = plt.subplots(len(tests), 4, sharex = True, sharey = True)
+    print(table)
+    fig, axs = plt.subplots(len(tests), 3, sharex = True, sharey = True)
     plt.suptitle("Power")
     X = np.linspace(20, max_size, steps)
     X_ticks = [20, 100, 200]
     if len(table[0][0])>1:
         for t in range(0, len(tests)):
-            for i in range(0, 4):
+            for i in range(0, 3):
                 for q in range(0, 3):
                     Y_i = []
                     for j in range(0, steps):
                         Y_i.append(table[t][j][3*i+q])
-                    if t == 1:
+                    if t == 2:
                         axs[t][i].plot(X, Y_i, label=labels[3*i+q])
                         axs[t][i].legend()
                     else:
@@ -178,8 +185,6 @@ S =  samples()
 print("testing performance")
 
 perf = performance(S, 0.05)
-
-print(perf)
 
 plot_performance(perf)
 
