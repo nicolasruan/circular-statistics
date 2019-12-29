@@ -8,16 +8,15 @@ H1: sample does not come from uniform distribution
 These tests are
 
 - rayleigh: Rayleigh test
-uses the distribution of the mean resultant vector
+uses the length of the mean resultant vector
 
 
 - rayleigh2: Rayleigh test with specified mean
-same as rayleigh but for a specified mean mu = 0 by default 
+uses the mean component in the mean direction.
 
 
 - watson: Watson test
-uses the mean square deviation of the data from uniformity
-
+uses the variance of the differences between the empirical cdf and the cdf of the uniform
 
 - kuiper: Kuiper test
 uses the sum of suprema of the differences between the empirical cdf and the cdf of the uniform
