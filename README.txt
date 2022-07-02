@@ -46,6 +46,6 @@ and from the non-unimodal alternatives.
 
 28/11/2019
 
-For further information, you can contact me at
+For more information, feel free to contact me at
 NICOLAS RUAN 
 nicolasruan@hotmail.com
