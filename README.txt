@@ -2,18 +2,16 @@ README: Documentation of 'Circular statistics: Goodness of Fit'
 
 This library contains the code used for my bachelor thesis 'Circular Statistics: Goodness of Fit'.
 
-In 'tests', four classical tests of uniformity for circular data are implemented. All test functions take as argument a list of angles in [0, 2pi[ and output the p-value of the hypothesis problem 
-HO: sample comes from uniform distribution
-H1: sample does not come from uniform distribution
-These tests are
+Four classical tests of uniformity for circular data are implemented in 'tests.py'. All test functions take as argument a list of angles in [0, 2pi[ and output the p-value of the hypothesis test
+HO: the data is drawn from the circular uniform distribution
+H1: the data is not drawn from the circular uniform distribution
 
+These tests are
 - rayleigh: Rayleigh test
 uses the length of the mean resultant vector
 
-
 - rayleigh2: Rayleigh test with specified mean
 uses the mean component in the mean direction.
-
 
 - watson: Watson test
 uses the variance of the differences between the empirical cdf and the cdf of the uniform
@@ -50,4 +48,4 @@ and from the non-unimodal alternatives.
 
 For further information, you can contact me at
 NICOLAS RUAN 
-nicolasruan@student.kuleuven.be
+nicolasruan@hotmail.com
