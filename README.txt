@@ -1,5 +1,7 @@
 README: Documentation of 'Circular statistics: Goodness of Fit'
 
+For more information see ('Directional statistics', Mardia & Jupp, 2000)
+
 This library contains the code used for my bachelor thesis 'Circular Statistics: Goodness of Fit'.
 
 Four classical tests of uniformity for circular data are implemented in 'tests.py'. All test functions take as argument a list of angles in [0, 2pi[ and output the p-value of the hypothesis test
@@ -46,6 +48,3 @@ and from the non-unimodal alternatives.
 
 28/11/2019
 
-For more information, feel free to contact me at
-NICOLAS RUAN 
-nicolasruan@hotmail.com
